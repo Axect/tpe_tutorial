@@ -44,7 +44,3 @@ fn objective(x: f64, y: i32) -> f64 {
 ```
 
 The goal is to minimize this objective function using the TPE algorithm.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
