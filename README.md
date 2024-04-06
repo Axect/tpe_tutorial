@@ -1,46 +1,53 @@
-# TPE Optimization Example
+# TPE Tutorial in Rust
 
-This project demonstrates the usage of the `tpe` crate in Rust for optimization using the Tree-structured Parzen Estimator (TPE) algorithm. The example optimizes a simple objective function with one continuous and one categorical variable.
+This project demonstrates how to perform parameter optimization using the Tree-structured Parzen Estimator (TPE) algorithm in Rust.
+It compares the performance of TPE with the Levenberg-Marquardt (LM) algorithm for fitting a model to noisy data.
+
+## Overview
+
+The main steps of the tutorial are:
+
+1. Generate noisy data from a true model with known parameters.
+2. Fit the model using the Levenberg-Marquardt algorithm.
+3. Perform parameter optimization using TPE.
+4. Compare the performance of LM and TPE.
 
 ## Dependencies
 
-- `tpe` crate for TPE optimization
-- `peroxide` crate for plotting
-- `rand` crate for random number generation
+The project uses the following Rust libraries:
 
-## Usage
+- `peroxide` for automatic differentiation and optimization.
+- `rand` for random number generation.
+- `tpe` for the TPE algorithm.
+- `indicatif` for progress bar visualization.
 
-1. Clone the repository and navigate to the project directory.
-2. Run the example using `cargo run`.
-3. The best parameters, trial, and value will be printed to the console.
-4. Two plots will be generated:
-   - `optimize_history.png`: Shows the objective value over trials, with the best value highlighted in red.
-   - `parameter_history.png`: Shows the history of the continuous and categorical variables over trials.
+For plot feature in `peroxide`, you need to install below python libraries:
+
+- `matplotlib` for plotting
+- `scienceplots` for nature style plots
 
 ## Results
 
-The optimization results are shown in the following plots:
+The tutorial generates three plots to visualize the results:
 
-### Objective Value History
+1. `optimize_history.png`: Shows the objective function value over the optimization trials for TPE.
 
-![Objective Value History](optimize_history.png)
+![Optimization History](optimize_history.png)
 
-This plot shows the objective value for each trial. The best value found during the optimization is highlighted in red.
-
-### Parameter History
+2. `parameter_history.png`: Displays the evolution of the model parameters during the TPE optimization.
 
 ![Parameter History](parameter_history.png)
 
-This plot shows the history of the continuous variable (x) and the categorical variable (y) over the trials. The continuous variable is plotted as a line, while the categorical variable is plotted as scattered points.
+3. `lm_tpe.png`: Compares the fitted models obtained by LM and TPE with the true model and noisy data.
 
-## Objective Function
+![LM vs TPE](lm_tpe.png)
 
-The objective function being optimized is a simple quadratic function with an additional term based on the categorical variable:
+## Usage
 
-```rust
-fn objective(x: f64, y: i32) -> f64 {
-    x.powi(2) + y as f64
-}
+To run the tutorial, ensure you have Rust installed, then execute:
+
+```bash
+cargo run --release
 ```
 
-The goal is to minimize this objective function using the TPE algorithm.
+The plots will be saved in the current directory.
